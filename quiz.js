@@ -7,6 +7,7 @@ var questions = [
     ["How long did you study last night?", "With Bob.", "In my room.", "English.", "For three hours.", "D"]
 ]
 
+// simplify commonly used function
 function get(x) {
     return document.getElementById(x);
 }
@@ -14,15 +15,16 @@ function get(x) {
 function askQuestion() {
     test = get("test");
     if (pos >= questions.length) {
+        // end of test
         test.innerHTML = "<h2>You got "+correct+" of "+questions.length+" questions correct</h2>";
-        get("test_status").innerHTML = "Test completed";
+        get("testStatus").innerHTML = "Test completed";
         pos = 0;
         correct = 0;
 
         return false;
     }
 
-    get("test_status").innerHTML = "Question "+(pos+1)+" of"+questions.length;
+    get("testStatus").innerHTML = "Question "+(pos+1)+" of "+questions.length;
     question = questions[pos][0];
     optA = questions[pos][1];
     optB = questions[pos][2];
@@ -40,7 +42,7 @@ function askQuestion() {
 }
 
 function checkAnswer() {
-    options = document.getElementByName("options");
+    options = document.getElementsByName("options");
     for (var i=0; i<options.length; i++) {
         if (options[i].checked) {
             choice = options[i].value;
