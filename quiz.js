@@ -1,10 +1,16 @@
 var pos = 0;
 var correct = 0;
-var test, testStatus, question, choice, options, optA, optB, optC, optD;
+var test, testStatus, hint, question, choice, options, optA, optB, optC, optD;
 var questions = [
     ["How often do you play tennis?", "On Tuesday.", "For two hours.", "Almost every day.", "With John.", "C"],
     ["Where do you usually eat lunch?", "Sandwich.", "With Jane.", "At 12:00.", "In the cafeteria.", "D"],
     ["How long did you study last night?", "With Bob.", "In my room.", "English.", "For three hours.", "D"]
+]
+
+var hints = [
+    "This question is asking about frequency.",
+    "This question is asking about location.",
+    "This question is asking about time."
 ]
 
 // simplify commonly used function
@@ -38,7 +44,13 @@ function askQuestion() {
     test.innerHTML += "<input type='radio' name='options' value='C'>"+optC+"<br>";
     test.innerHTML += "<input type='radio' name='options' value='D'>"+optD+"<br>";
 
-    test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+    test.innerHTML += "<br><button onclick='checkAnswer()'>Submit</button>";
+    test.innerHTML += "<button onclick='giveHint()'>Hint</button>";
+}
+
+function giveHint() {
+    hint = get("hintBox");
+    hint.innerHTML = "<br>"+hints[pos];
 }
 
 function checkAnswer() {
@@ -51,6 +63,8 @@ function checkAnswer() {
 
     if (choice==questions[pos][5]) {
         correct++;
+        hint = get("hintBox");
+        hint.innerHTML = "";
     }
 
     pos++;
