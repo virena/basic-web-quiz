@@ -1,6 +1,7 @@
 var pos = 0;
 var correct = 0;
-var test, testStatus, hint, question, choice, options, optA, optB, optC, optD;
+var attempts = 0;
+var test, testStatus, hint, question, choice, correctness, options, optA, optB, optC, optD;
 var questions = [
     "How often do you play tennis?",
     "Where do you usually eat lunch?",
@@ -28,13 +29,16 @@ function askQuestion() {
     test = get("test");
     if (pos >= questions.length) {
         // end of test
-        test.innerHTML = "<h2>You got "+correct+" of "+questions.length+" questions correct</h2>";
+        test.innerHTML = "<h2>You completed the quiz in "+attempts+" attempts.</h2>";
         get("testStatus").innerHTML = "Test completed";
         pos = 0;
         correct = 0;
 
         return false;
     }
+
+    hint = get("hintBox");
+    hint.innerHTML = "";
 
     get("testStatus").innerHTML = "Question "+(pos+1)+" of "+questions.length;
     question = questions[pos];
@@ -69,13 +73,16 @@ function checkAnswer() {
 
     if (choice==answers[pos][4]) {
         correct++;
-        hint = get("hintBox");
-        hint.innerHTML = "";
+        pos++;
+        $(".alert").addClass("d-none");
+    } else {
+        $(".alert").removeClass("d-none");
     }
 
-    pos++;
+    attempts++;
 
     askQuestion();
 }
+
 
 window.addEventListener("load", askQuestion, false);
