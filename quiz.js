@@ -39,12 +39,12 @@ function askQuestion() {
 
     test.innerHTML = "<h3>"+question+"</h3>";
 
-    test.innerHTML += "<input type='radio' name='options' value='A'>"+optA+"<br>";
-    test.innerHTML += "<input type='radio' name='options' value='B'>"+optB+"<br>";
-    test.innerHTML += "<input type='radio' name='options' value='C'>"+optC+"<br>";
-    test.innerHTML += "<input type='radio' name='options' value='D'>"+optD+"<br>";
+    test.innerHTML += "<input type='radio' name='options' value='A'> "+optA+"<br>";
+    test.innerHTML += "<input type='radio' name='options' value='B'> "+optB+"<br>";
+    test.innerHTML += "<input type='radio' name='options' value='C'> "+optC+"<br>";
+    test.innerHTML += "<input type='radio' name='options' value='D'> "+optD+"<br>";
 
-    test.innerHTML += "<br><button onclick='checkAnswer()'>Submit</button>";
+    test.innerHTML += "<br><span id='submit'><button onclick='checkAnswer()'>Submit</button></div>";
     test.innerHTML += "<button onclick='giveHint()'>Hint</button>";
 }
 
