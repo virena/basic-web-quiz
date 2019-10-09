@@ -2,9 +2,15 @@ var pos = 0;
 var correct = 0;
 var test, testStatus, hint, question, choice, options, optA, optB, optC, optD;
 var questions = [
-    ["How often do you play tennis?", "On Tuesday.", "For two hours.", "Almost every day.", "With John.", "C"],
-    ["Where do you usually eat lunch?", "Sandwich.", "With Jane.", "At 12:00.", "In the cafeteria.", "D"],
-    ["How long did you study last night?", "With Bob.", "In my room.", "English.", "For three hours.", "D"]
+    "How often do you play tennis?",
+    "Where do you usually eat lunch?",
+    "How long did you study last night?"
+]
+
+var answers = [
+    ["On Tuesday.", "For two hours.", "Almost every day.", "With John.", "C"],
+    ["Sandwich.", "With Jane.", "At 12:00.", "In the cafeteria.", "D"],
+    ["With Bob.", "In my room.", "English.", "For three hours.", "D"]
 ]
 
 var hints = [
@@ -31,11 +37,11 @@ function askQuestion() {
     }
 
     get("testStatus").innerHTML = "Question "+(pos+1)+" of "+questions.length;
-    question = questions[pos][0];
-    optA = questions[pos][1];
-    optB = questions[pos][2];
-    optC = questions[pos][3];
-    optD = questions[pos][4];
+    question = questions[pos];
+    optA = answers[pos][0];
+    optB = answers[pos][1];
+    optC = answers[pos][2];
+    optD = answers[pos][3];
 
     test.innerHTML = "<h3>"+question+"</h3>";
 
@@ -61,7 +67,7 @@ function checkAnswer() {
         }
     }
 
-    if (choice==questions[pos][5]) {
+    if (choice==answers[pos][4]) {
         correct++;
         hint = get("hintBox");
         hint.innerHTML = "";
