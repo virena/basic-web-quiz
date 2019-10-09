@@ -1,0 +1,10 @@
+.container {
+    text-align: left;
+    display: inline-block;
+    max-width: 500px;
+    margin: auto;
+}
+
+#submit {
+    padding-right: 15px;
+}
