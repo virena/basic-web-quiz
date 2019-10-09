@@ -60,7 +60,7 @@ function askQuestion() {
 
 function giveHint() {
     hint = get("hintBox");
-    hint.innerHTML = "<br>"+hints[pos];
+    hint.innerHTML = hints[pos]+"<br></br>";
 }
 
 function checkAnswer() {
@@ -75,6 +75,7 @@ function checkAnswer() {
         correct++;
         pos++;
         $(".alert").addClass("d-none");
+        alert("Correct!");
     } else {
         $(".alert").removeClass("d-none");
     }
