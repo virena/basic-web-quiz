@@ -1,7 +1,9 @@
 var pos = 0;
 var correct = 0;
-var attempts = 0;
+var totalAttempts = 0;
+var tryAgain = 0;
 var test, testStatus, hint, question, choice, correctness, options, optA, optB, optC, optD;
+var alertBox;
 var questions = [
     "How often do you play tennis?",
     "Where do you usually eat lunch?",
@@ -20,6 +22,12 @@ var hints = [
     "This question is asking about time."
 ]
 
+var wrong = [
+    "Try again!",
+    "Wrong!",
+    "One more time!"
+]
+
 // simplify commonly used function
 function get(x) {
     return document.getElementById(x);
@@ -29,7 +37,7 @@ function askQuestion() {
     test = get("test");
     if (pos >= questions.length) {
         // end of test
-        test.innerHTML = "<h2>You completed the quiz in "+attempts+" attempts.</h2>";
+        test.innerHTML = "<h2>You completed the quiz in "+totalAttempts+" totalAttempts.</h2>";
         get("testStatus").innerHTML = "Test completed";
         pos = 0;
         correct = 0;
@@ -60,7 +68,7 @@ function askQuestion() {
 
 function giveHint() {
     hint = get("hintBox");
-    hint.innerHTML = hints[pos]+"<br></br>";
+    hint.innerHTML = "<i>"+hints[pos]+"<br></br>";
 }
 
 function checkAnswer() {
@@ -71,16 +79,34 @@ function checkAnswer() {
         }
     }
 
+    alertBox = get("alert-id");
+
     if (choice==answers[pos][4]) {
         correct++;
         pos++;
+
         $(".alert").addClass("d-none");
+        alertBox.innerHTML = "";
+
         alert("Correct!");
+        tryAgain = 0;
     } else {
         $(".alert").removeClass("d-none");
+        alertBox.innerHTML = "Sorry, that is incorrect. ";
+
+        if (tryAgain > 0) {
+            alertBox.innerHTML += wrong[tryAgain-1];
+        }
+
+        if (tryAgain == 3) {
+            tryAgain = 0;
+        } else {
+            tryAgain++;
+        }
     }
 
-    attempts++;
+    totalAttempts++;
+
 
     askQuestion();
 }
