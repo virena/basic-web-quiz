@@ -1,0 +1,13 @@
+.container {
+    padding-top: 20px;
+    height: 450px;
+    border: 2px solid #cbcbcb;
+}
+
+#submit {
+    padding-right: 15px;
+}
+
+#leftColumn {
+    padding-top: 100px;
+}
