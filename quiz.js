@@ -95,7 +95,7 @@ function checkAnswer() {
         alertBox.innerHTML = "Sorry, that is incorrect. ";
 
         if (tryAgain > 0) {
-            alertBox.innerHTML += wrong[tryAgain-1];
+            alertBox.innerHTML += "<strong>"+wrong[tryAgain-1]+"</strong>";
         }
 
         if (tryAgain == 3) {
