@@ -4,6 +4,7 @@ var totalAttempts = 0;
 var tryAgain = 0;
 var test, testStatus, hint, question, choice, correctness, options, optA, optB, optC, optD;
 var alertBox;
+
 var questions = [
     "How often do you play tennis?",
     "Where do you usually eat lunch?",
@@ -41,7 +42,7 @@ function askQuestion() {
         get("testStatus").innerHTML = "Test completed";
         pos = 0;
         correct = 0;
-
+        
         return false;
     }
 
