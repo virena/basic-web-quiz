@@ -1,3 +1,33 @@
+$(document).ready(() => {
+    $('#testButton').click(() => {
+        const requestURL = '/questionQuery';
+        console.log('making ajax request to: ', requestURL);
+
+        $.ajax({
+            url: requestURL,
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+                console.log('You received some data!', data);
+
+                $('#testDiv').html(data[0]);
+                $('#hintDiv').html(data[1]);
+            }
+        })
+    });
+
+    $('#postButton').click(() => {
+        console.log('method initialized');
+        $.ajax({
+            url: 'postMsg',
+            type: 'POST',
+            data: {
+                questNum: pos+1
+            }
+        })
+    });
+});
+
 var pos = 0;
 var correct = 0;
 var totalAttempts = 0;
@@ -36,9 +66,9 @@ function get(x) {
 
 function askQuestion() {
     test = get("test");
-    if (pos >= questions.length) {
+    if (pos == questions.length) {
         // end of test
-        test.innerHTML = "<h2>You completed the quiz in "+totalAttempts+" totalAttempts.</h2>";
+        test.innerHTML = "<h2>You completed the quiz in "+totalAttempts+" total attempts.</h2>";
         get("testStatus").innerHTML = "Test completed";
         pos = 0;
         correct = 0;
