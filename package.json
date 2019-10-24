@@ -1,0 +1,22 @@
+{
+  "name": "ai-lang-tutor",
+  "version": "1.0.0",
+  "description": "Artificial Intelligence Language Tutor",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virena/AI-Lang-Tutor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/virena/AI-Lang-Tutor/issues"
+  },
+  "homepage": "https://github.com/virena/AI-Lang-Tutor#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
