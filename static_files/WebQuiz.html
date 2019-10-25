@@ -13,10 +13,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
 
-        <!--jQuery, Popper.js, Bootstrap JS
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>-->
+        <!--jQuery, Popper.js, Bootstrap JS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -41,34 +38,28 @@
             <div class="row">
                 <div class="col-3">
                     <p id="leftColumn">
-                        This is great placeholder text we can use to fill up this space.
-                        It might be in the form of a checklist of concepts the user has already accomplished.
-                        It might link to other resources. Who knows? The possibilities are endless.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     </p>
-                    <a href="https://www.grammarly.com/blog/10-best-grammar-resources-english-language-learners/">
-                        Here is a great link to learn more about grammar!
-                    </a>
                 </div>
                 <div class="col-5">
                     <h1>Grammar Quiz</h1><br>
                     <h2 id="testStatus"></h2><br>
-                    <div id="quiz">
-                        <div id="test"></div>
+                    <div id="test">
+                        <h3 id="question"></h3>
+                        <button onclick="loadTest()" id="init">Start Quiz</button>
+                        <div id="buttonOptions">
+                        </div>
+                        <div id="buttons" style="display:none">
+                            <br><span id='submit'><button onclick='submit()'>Submit</button></span>
+                            <button onclick='getHint()'>Hint</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="alert d-none alert-danger" id="alert-id" role='alert'></div>
-                    <div id="hintBox"></div>
+                    <div id="alert-id" style="color:red"></div>
+                    <i><div id="hintBox"></div></i><br>
                     <p id="rightColumn">
-                        This is great placeholder text we can use to fill up this space.
-                        It might be in the form of example sentences that the user has seen before.
-                        It might link to other resources. Who knows? The possibilities are endless.
-
-                    <a href="https://www.grammarly.com/blog/10-best-grammar-resources-english-language-learners/">
-                        Here is a great link to click on if you're stuck!
-                    </a>
-
-                        It is actually the same link as the other pane.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
                 </div>
             </div>
