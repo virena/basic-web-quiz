@@ -7,57 +7,54 @@ app.use(express.static('static_files'));
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('quizDB.db');
 
-const questionAndHint = 'SELECT string, hint FROM Questions WHERE num = ';
+// Queries
+const hint = 'SELECT hint FROM Questions WHERE num = ';
+const answer = 'SELECT choiceID FROM Choices WHERE correct = "Y" AND questionNumber = ';
 
-function questionQuery(rows) {
-    const question = rows[0].string;
-    const hint = rows[0].hint;
-    var arr = [question, hint];
-    return arr;
-}
+const questionOptionsQuery = `
+SELECT
+    Questions.string,
+    Choices.choiceID
+FROM
+    Questions
+    LEFT JOIN Choices ON(Questions.num = Choices.questionNumber)
+WHERE Questions.num = `;
 
+const count = 'SELECT COUNT(*) FROM Questions';
+
+// POST
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
+
 app.post('/postMsg', (req, res) => {
     postVal = req.body.questNum;
-    console.log("In post method");
-    console.log(postVal);
-
-    (err) => {
-        if (err) {
-            res.send({message: 'error in app.post(/users)'});
-        } else {
-            res.send({message: 'successfully run app.post(/users)'});
-        }
-    }
 });
 
-app.get('/questionQuery', (req, res) => {
-    db.serialize(() => {
-        console.log("In query method");
-        console.log(postVal);
-        db.all(questionAndHint+(postVal), (err, rows) => {
-            res.send(questionQuery(rows));
-        });
-    })
+// Questions and choices
+app.get('/questionOptions', (req, res) => {
+    db.all(questionOptionsQuery+postVal, (err, rows) => {
+        res.send(rows);
+    });
 });
 
-/*app.get('/2', (req, res) => {
-    db.serialize(() => {
-        db.all(questionAndHint+'2', (err, rows) => {
-            res.send(questionQuery(rows));
-        });
-    })
+app.get('/numQuestions', (req, res) => {
+    db.all(count, (err, rows) => {
+        res.send(rows)
+    });
 });
 
-app.get('/3', (req, res) => {
-    db.serialize(() => {
-        db.all(questionAndHint+'3', (err, rows) => {
-            res.send(questionQuery(rows));
-        });
-    })
-});*/
-
-app.listen(3000, () => {
-    console.log('Server started at http://localhost:3000/');
+// Hint
+app.get('/hint', (req, res) => {
+    db.all(hint+postVal, (err, rows) => {
+        res.send(rows)
+    });
 });
+
+// Submit
+app.get('/submit', (req, res) => {
+    db.all(answer+postVal, (err, rows) => {
+        res.send(rows)
+    });
+});
+
+app.listen(3000, () => {});
