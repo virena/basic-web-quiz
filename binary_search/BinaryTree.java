@@ -40,13 +40,42 @@ public class BinaryTree {
         }
     }
 
+    public void traversePreOrder(Node node) {
+        if (node != null) {
+            System.out.print(" " + node.value);
+            traversePreOrder(node.left);
+            traversePreOrder(node.right);
+        }
+    }
+
     public static void main(String args[]) {
         BinaryTree bt = new BinaryTree();
-        int n = 4;
-        //int totalNodes = (int)Math.pow(2, n) - 1;
+        int n = 4; // number of questions we want the user to be answering
         int start = (int)Math.pow(2, n-1);
 
         bt.root = bt.insertNode(start, bt.root, n-1);
+
+        /* Traverse Testing 
+        
+        System.out.println("Traverse in order:");
         bt.traverseInOrder(bt.root);
+
+        System.out.println("Traverse pre-order:");
+        bt.traversePreOrder(bt.root);
+
+        System.out.println();*/
+        boolean[] answers = {true, false, true, true};
+        bt.getQuestions(bt.root, answers, 0);
+    }
+
+    public void getQuestions(Node node, boolean[] answers, int i) {
+        if (i < answers.length) {
+            System.out.print(node.value + " ");
+            if (answers[i]) {
+                getQuestions(node.right, answers, ++i);
+            } else {
+                getQuestions(node.left, answers, ++i);
+            }
+        }
     }
 }
