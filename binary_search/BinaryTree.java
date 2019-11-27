@@ -1,4 +1,5 @@
 import java.lang.Math;
+import java.util.Scanner;
 
 public class BinaryTree {
 
@@ -7,10 +8,15 @@ public class BinaryTree {
         Node left;
         Node right;
 
-        Node(int value) {
+        public Node(int value) {
             this.value = value;
             right = null;
             left = null;
+        }
+
+        @Override
+        public String toString() {
+            return ""+value;
         }
     }
     
@@ -32,50 +38,28 @@ public class BinaryTree {
         return root;
     }
 
-    public void traverseInOrder(Node node) {
-        if (node != null) {
-            traverseInOrder(node.left);
-            System.out.print(" " + node.value);
-            traverseInOrder(node.right);
-        }
-    }
+    public void getQuestions(Node node, int n, Scanner scan) {
+        if (node != null) System.out.println(node);
+        if (n > 0) {
+            boolean answer = scan.nextBoolean();
 
-    public void traversePreOrder(Node node) {
-        if (node != null) {
-            System.out.print(" " + node.value);
-            traversePreOrder(node.left);
-            traversePreOrder(node.right);
-        }
-    }
-
-    public static void main(String args[]) {
-        BinaryTree bt = new BinaryTree();
-        int n = 4; // number of questions we want the user to be answering
-        int start = (int)Math.pow(2, n-1);
-
-        bt.root = bt.insertNode(start, bt.root, n-1);
-
-        /* Traverse Testing 
-        
-        System.out.println("Traverse in order:");
-        bt.traverseInOrder(bt.root);
-
-        System.out.println("Traverse pre-order:");
-        bt.traversePreOrder(bt.root);
-
-        System.out.println();*/
-        boolean[] answers = {true, false, true, true};
-        bt.getQuestions(bt.root, answers, 0);
-    }
-
-    public void getQuestions(Node node, boolean[] answers, int i) {
-        if (i < answers.length) {
-            System.out.print(node.value + " ");
-            if (answers[i]) {
-                getQuestions(node.right, answers, ++i);
+            if (answer) {
+                getQuestions(node.right, --n, scan);
             } else {
-                getQuestions(node.left, answers, ++i);
+                getQuestions(node.left, --n, scan);
             }
         }
+    }
+
+    // @param - args[0] is the number of questions we want the user to be answering
+    public static void main(String args[]) {
+        BinaryTree bt = new BinaryTree();
+        int n = Integer.parseInt(args[0]);
+        int start = (int)Math.pow(2, n-1);
+    
+        bt.root = bt.insertNode(start, bt.root, n-1);
+    
+        Scanner scan = new Scanner(System.in);
+        bt.getQuestions(bt.root, n, scan);
     }
 }
